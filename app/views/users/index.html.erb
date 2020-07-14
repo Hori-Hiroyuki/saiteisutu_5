@@ -1,0 +1,57 @@
+
+<div class="container">
+		<div class="row">
+  			<div class="col-xs-3">
+  				<div class="profile">
+					<h1>User info</h1>
+					<div class="image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></div>
+					<div class="user">name : <%= current_user.name %></div>
+					<div class="introduction">introduction : <%= current_user.introduction %></div>
+					<div class="profile-info"><%= link_to "設定", edit_user_path(current_user)%></div>
+				</div>
+				<h3 class="new-book">New book</h3>
+					<%= form_for(@user, url: users_path) do |f| %>
+						<% if @user.errors.any? %>
+  							<div class="error_message">
+        						<h2>2 errors</h2>
+	   							<ul>
+	      							<% @user.errors.full_messages.each do |message| %>
+	        							<li><%= message %></li>
+	      							<% end %>
+	    						</ul>
+  							</div>
+						<% end %>
+						<div class="field-title">Title</div>
+	    					<%= f.text_field :email %>
+						<div class="area-body">Body</div>
+	    					<%= f.text_area :email %>
+						<div class="submit">
+	    					<%= f.submit  'Create Book'  %></div>
+					<% end %>
+			</div>
+
+
+
+  			<div class="col-xs-9">
+				<table class="table table-hover table-inverse">
+					<thead>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @users.each do |a| %>
+							<tr>
+								<td><%= attachment_image_tag a, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></td>
+								<td><%= a.name %></td>
+								<td><%= link_to "Show", user_path(a.id) %>
+								</td>
+			    			</tr>
+						<% end %>
+					</tbody>
+				</table>
+   			</div>
+  		</div>
+</div>

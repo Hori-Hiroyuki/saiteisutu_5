@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+    		<div class="profile">
+				<h1>User info</h1>
+				<div class="image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%></div>
+				<div class="user">name : <%= current_user.name %></div>
+				<div class="introduction">introduction : <%= current_user.introduction %></div>
+				<div class="profile-info"><%= link_to "設定", edit_user_path(current_user)%></div>
+			</div>
+
+				<h3 class="new-book">New book</h3>
+					<%= form_for(@book, url: books_path) do |f| %>
+						<% if @book.errors.any? %>
+				  			<div class="error_message">
+				        		<h2>2 errors</h2>
+					    		<ul>
+					    		<% @book.errors.full_messages.each do |message| %>
+					        	<li><%= message %></li>
+					      		<% end %>
+					    		</ul>
+				  			</div>
+						<% end %>
+
+				    <div class="field-title">Title</div>
+				    	<%= f.text_field :title %>
+				    <div class="area-body">Body</div>
+				    	<%= f.text_area :body %>
+				　　<div class="submit">
+				    	<%= f.submit 'Create Book' %></div>
+				<% end %>
+		</div>
+
+
+
+	<div class="col-xs-9">
+		<h2 class="books-title">Books</h2>
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Title</th>
+						<th>Opinion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @books.each do |a| %>
+						<tr>
+							<td><%= link_to book_path(a.id) do %><%= attachment_image_tag a.user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+								<% end %>
+							</td>
+							<td><%= link_to a.title, book_path(a.id) %></td>
+							<td><%= a.body %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+	</div>
+
+</div>
+</div>
