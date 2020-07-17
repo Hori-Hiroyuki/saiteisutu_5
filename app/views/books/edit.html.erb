@@ -1,28 +1,30 @@
-<div class="edit-container">
-<h2 class="edit-title">Editing Book</h2>
+<div class="book-edit" style="margin-top: 100px; margin-left: 50px;">
+  <div class="edit-container">
+  <h2 class="edit-title">Editing Book</h2>
 
 
-<%= form_for(@book) do |f| %>
+  <%= form_for(@book) do |f| %>
 
- <% if @book.errors.any? %>
-  <div class="error_message">
-        	<h2>2 errors</h2>
-	    <ul>
-	      <% @book.errors.full_messages.each do |message| %>
-	        <li><%= message %></li>
-	      <% end %>
-	    </ul>
+   <% if @book.errors.any? %>
+    <div class="error_message">
+          	<h2>2 errors</h2>
+  	    <ul>
+  	      <% @book.errors.full_messages.each do |message| %>
+  	        <li><%= message %></li>
+  	      <% end %>
+  	    </ul>
+    </div>
+  <% end %>
+    <div class="" style="margin: 0 auto; width: 500px;">
+        <h4>Title</h4>
+          <div class="book_title" type="text"><%= f.text_field :title, size: 63 %></div>
+        <h4>Opinion</h4>
+          <div class="book_body"><%= f.text_area :body, size: "66x2" %></div>
+        <input type="submit" name="commit" value="Update Book" class="btn btn-primary" data-disable-with="Update Book" style="width: 100%">
+        <%= link_to "Show", book_path(@book.id)%>
+        <%= link_to "Back", books_path %>
+    </div>
+  <% end %>
+
   </div>
-<% end %>
-
-    <h4>Title</h4>
-    <div class="edit-field"><%= f.text_field :title %></div>
-    <h4>Opinion</h4>
-    <div class="edit-area"><%= f.text_area :body %></div>
-    <div class="edit-submit"><%= f.submit 'Update Book' %></div>
-<% end %>
-
-
-<%= link_to "Show", book_path(@book.id) %>
-<%= link_to "Back", books_path %>
 </div>

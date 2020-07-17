@@ -20,11 +20,11 @@
         <%= flash[:notice] %>
           </div>
         <% end %>
-
-      <div class="header-list" style="background-color: black;">
-        <div class="header-title" style="color: white;"><h2>Bookers</h2></div>
+    <header class="navbar navbar-fixed-top navbar-inverse" style="padding-left: 5%;">
+      <div class="header-list">
+        <div class="header-title" style="color: white;"><span>Bookers</span></div>
           <div id="slidemenu">
-            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn" style="padding-right: 5%;">
                 <% if user_signed_in? %>
                     <li class="">
                       <%= link_to "Home", user_path(current_user) %>
@@ -43,7 +43,7 @@
                       <%= link_to "Home", root_path %>
                     </li>
                     <li class="">
-                      <%= link_to "About", about_path %>
+                      <%= link_to "About", home_about_path %>
                     </li>
                     <li class="">
                       <%= link_to "sign up", new_user_registration_path %>
@@ -55,6 +55,7 @@
             </ul>
           </div>
       </div>
+    </header>
     </div>
     <%= yield %>
   </body>

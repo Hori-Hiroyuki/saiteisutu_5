@@ -1,12 +1,16 @@
-<h1>User info</h1>
+<div class="book-edit" style="margin-top: 100px; margin-left: 50px;">
+	<h1>User info</h1>
 
-<%= form_for(@user) do |f| %>
-	<div class="edit-profile">
-		<div class="edit-name"><%= f.text_field :name %>
-	    <div class="edit-image"><%= f.attachment_field :profile_image %></div>
-	    <div class="area-body">Opinion</div>
-	    <%= f.text_area :introduction %>
-	    <div class="submit">
-	    <%= f.submit 'Update User' %></div>
-	</div>
-<% end %>
+	<%= form_for(@user) do |f| %>
+		<div class="edit-profile">
+			<label class="name">Name</label>
+				<div class="edit-name"><%= f.text_field :name %>
+			<label class="image" style="display: block;">Image</label>
+		    	<div class="edit-image"><%= f.attachment_field :profile_image %></div>
+		    <label class="area-body">introduction</label>
+		    	<%= f.text_area :introduction %>
+		    <div class="submit">
+		    <%= f.submit 'Update User' %></div>
+		</div>
+	<% end %>
+</div>

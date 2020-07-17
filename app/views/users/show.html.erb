@@ -1,54 +1,69 @@
-<div class="container">
-		<div class="row">
-  			<div class="col-xs-3">
-				<div class="profile">
-				  <h1>User info</h1>
-					<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
-					<div class="user">name : <%= @user.name %></div>
-					<div class="introduction">introduction : <%= @user.introduction %></div>
-					<div class="profile-info"><%= link_to "設定", edit_user_path(@user.id)%></div>
-				</div>
-				<h3 class="new-book">New book</h3>
-					<% if @user.errors.any? %>
-		  					<div class="error_message">
-		        			<h2>2 errors</h2>
-			    		<ul>
-			      			<% @user.errors.full_messages.each do |message| %>
-			        		<li><%= message %></li>
-			      			<% end %>
-			    		</ul>
-		  					</div>
-					<% end %>
-
-				<%= form_for(@book) do |f| %>
-			    	<div class="field-title">Title</div>
-			    		<%= f.text_field :title %>
-			    	<div class="area-body">Option</div>
-			    		<%= f.text_area :body %>
-			　　		<div class="submit">
-			    		<%= f.submit 'Create Book' %></div>
-				<% end %>
-		</div>
-		<div class="col-xs-9">
-				<table class="table table-hover table-inverse">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Title</th>
-							<th>Opinion</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% @books.each do |a| %>
-							<tr>
-								<td><%= attachment_image_tag a.user, :profile_image, :fill, 50, 50, format: 'jpeg' %></td>
-								<td><%= link_to a.title, book_path(a.id) %></td>
-								<td><%= a.body  %>
-								</td>
-			    			</tr>
+<div class="book-edit" style="margin-top: 100px; margin-left: 50px;">
+	<div class="container">
+			<div class="row">
+	  			<div class="col-xs-3">
+					<div class="profile">
+					  <h1>User info</h1>
+						<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+							<table class="table table-hover table-inverse">
+								<thead>
+									<tr></tr>
+									<tr></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>name</th>
+										<th><%= @user.name %></th>
+									</tr>
+									<tr>
+										<th>introdction</th>
+										<th><%= @user.introduction %></th>
+									</tr>
+								</tbody>
+							</table>
+						<%= link_to edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_20942" do %><% end %>
+					</div>
+					<h3 class="new-book">New book</h3>
+						<% if @user.errors.any? %>
+			  					<div class="error_message">
+			        			<h2>2 errors</h2>
+				    		<ul>
+				      			<% @user.errors.full_messages.each do |message| %>
+				        		<li><%= message %></li>
+				      			<% end %>
+				    		</ul>
+			  					</div>
 						<% end %>
-					</tbody>
-				</table>
-   			</div>
-  		</div>
+
+					<%= form_for(@book) do |f| %>
+				    	<div class="field-row">Title</div>
+					    	<input class="col-xs-12 book_title" type="text" name="book[title]" id="book_title">
+					    <div class="field-row">Opinion</div>
+					    	<textarea class="col-xs-12 book_body" name="book[body]" id="book_body"></textarea>
+					　　<input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book">
+					<% end %>
+			</div>
+			<div class="col-xs-9">
+					<table class="table table-hover table-inverse">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Title</th>
+								<th>Opinion</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @books.each do |a| %>
+								<tr>
+									<td><%= attachment_image_tag a.user, :profile_image, :fill, 40, 40, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: '40x40'%></td>
+									<td><%= link_to a.title, book_path(a.id) %></td>
+									<td><%= a.body  %>
+									</td>
+				    			</tr>
+							<% end %>
+						</tbody>
+					</table>
+	   			</div>
+	  		</div>
+	</div>
 </div>

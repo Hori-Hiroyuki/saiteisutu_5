@@ -5,18 +5,12 @@ class UsersController < ApplicationController
   def index
   	@user = User.new
   	@users = User.all.order(created_at: :desc)
-    puts "-----------------------"
-    puts current_user.name
-    puts "-----------------------"
   end
 
   def show
   	@user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-    puts "-----------------------"
-    puts current_user.name
-    puts "-----------------------"
   end
 
   def edit
